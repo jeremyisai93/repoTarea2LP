@@ -17,28 +17,34 @@ public class Tarea2lp {
     /**
      * @param args the command line arguments
      */
+      
+    
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner leer=new Scanner(System.in);
         System.out.println("Presione una Enter para empezar....");
         leer.nextLine();
         
-        BloqueColor [][] Tabla=new BloqueColor[15][15];
+        Bloque [][] Tabla =new BloqueColor[15][15];
         
         Random r = new Random();
 
         String tColores = "RBOGY";
         //llenado de Matriz de juego
+        
         for (int i = 0; i < 15; i++) {
             for (int j=0;j<15;j++){
                 Tabla[i][j]= new ColorCreator().CrearBloque();
-                Tabla[i][j].setBloqueColor(Character.toString(tColores.charAt(r.nextInt(tColores.length()))));
+                ((BloqueColor) Tabla[i][j]).setBloqueColor(Character.toString(tColores.charAt(r.nextInt(tColores.length()))));
             }            
         }
         //impresion de tablero de Juego
+        System.out.println("    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15\n");
         for (int i = 0; i < 15; i++) {
+            if (i<10) System.out.print(i+"   ");
+            else System.out.print(i+"  ");
             for (int j=0;j<15;j++){
-                System.out.print(Tabla[i][j].getBloqueColor()+" ");
+                System.out.print(((BloqueColor) Tabla[i][j]).getBloqueColor()+"  ");
             }
            System.out.print("\n");
         }

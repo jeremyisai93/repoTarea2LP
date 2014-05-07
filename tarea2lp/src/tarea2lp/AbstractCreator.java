@@ -11,8 +11,5 @@ package tarea2lp;
  */
 abstract class AbstractCreator {
     
-    Bloque CrearBloque(){
-        Bloque B= new Bloque() {};
-        return B;
-    }
+   public abstract Bloque CrearBloque();
 }

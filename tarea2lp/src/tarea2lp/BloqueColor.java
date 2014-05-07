@@ -20,4 +20,9 @@ public class BloqueColor extends Bloque {
         return this.color;
     }
     
+    @Override
+    void DestruirBloque(){
+        this.color=" ";
+    }
+    
 }

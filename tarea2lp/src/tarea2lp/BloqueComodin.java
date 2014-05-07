@@ -13,6 +13,7 @@ public class BloqueComodin extends Bloque implements HabilityBehavior{
     
     @Override
     public void Hability(){
-        
+
     }
+        
 }

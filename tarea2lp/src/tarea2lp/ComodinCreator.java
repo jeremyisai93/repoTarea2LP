@@ -12,8 +12,7 @@ package tarea2lp;
 public class ComodinCreator extends AbstractCreator{
     
     @Override
-    Bloque CrearBloque(){
-        Bloque B=new BloqueComodin() {};
-        return B;
+    public BloqueComodin CrearBloque(){
+        return new BloqueComodin();       
     }
 }

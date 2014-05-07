@@ -11,10 +11,10 @@ package tarea2lp;
  */
 public class ColorCreator extends AbstractCreator{
     
+    
     @Override
-    BloqueColor CrearBloque(){
-        BloqueColor B=new BloqueColor() {};
-        return B;
+    public BloqueColor CrearBloque(){
+        return new BloqueColor();
     }
     
 }
