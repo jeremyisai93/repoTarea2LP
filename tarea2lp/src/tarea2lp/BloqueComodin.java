@@ -10,10 +10,23 @@ package tarea2lp;
  * @author Jeremy
  */
 public class BloqueComodin extends Bloque implements HabilityBehavior{
+    String color;
+    
+   void setBloqueComodin(String color){
+        this.color=color;
+    }
+    
+    String getBloqueComodin(){
+        return this.color;
+    }
     
     @Override
     public void Hability(){
 
+    }
+    @Override
+    void DestruirBloque(){
+        this.color=" ";
     }
         
 }

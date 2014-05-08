@@ -11,7 +11,5 @@ package tarea2lp;
  * @author Jeremy
  */
 abstract class Bloque {
-    void DestruirBloque(){
-        
-    }
+    abstract void DestruirBloque();
 }
