@@ -207,7 +207,7 @@ public class Tarea2lp {
         Random r = new Random();
         String tColores = "RBOGY";
         String tComodin = "$&";
-        String actual,color,next;
+        String actual,next;
         int tot=0;
         while(tot!=14){
             //tot=0;
@@ -219,7 +219,8 @@ public class Tarea2lp {
                     actual=((BloqueComodin) Tabla[i][j]).getBloqueComodin();
                 }
                 if (" ".equals(actual) && i!=0){
-                    try{
+                    swapCelda(Tabla,i,j,i-1,j);
+                    /*try{
                         color=((BloqueColor) Tabla[i-1][j]).getBloqueColor();
                         Tabla[i][j]= new ColorCreator().CrearBloque();
                         ((BloqueColor) Tabla[i][j]).setBloqueColor(color);
@@ -230,13 +231,16 @@ public class Tarea2lp {
                         Tabla[i][j]= new ComodinCreator().CrearBloque();
                         ((BloqueComodin) Tabla[i][j]).setBloqueComodin(color);
                         Tabla[i-1][j].DestruirBloque();
-                    }
+                    }*/
+                    
                 }
                 
-            } 
+            }
+        
         tot++;
+        
+        }
         ImprimirTablero(Tabla);
-        }        
         for(int i=0; i<15;i++){
             try{
                 actual=((BloqueColor) Tabla[0][j]).getBloqueColor(); 
@@ -262,7 +266,8 @@ public class Tarea2lp {
                     next=((BloqueComodin) Tabla[cont+1][j]).getBloqueComodin();
                 }
                 while(" ".equals(next) && cont<14){
-                    try{
+                    swapCelda(Tabla,cont+1,j,cont,j);
+                    /*try{
                         color=((BloqueColor) Tabla[cont][j]).getBloqueColor();
                         Tabla[cont+1][j]= new ColorCreator().CrearBloque();
                         ((BloqueColor) Tabla[cont+1][j]).setBloqueColor(color);
@@ -273,7 +278,8 @@ public class Tarea2lp {
                         Tabla[cont+1][j]= new ComodinCreator().CrearBloque();
                         ((BloqueComodin) Tabla[cont+1][j]).setBloqueComodin(color);
                         Tabla[cont][j].DestruirBloque();
-                    }
+                    }*/
+                    ImprimirTablero(Tabla);
                     cont++;
                     if (cont<14){
                         try{
@@ -285,7 +291,7 @@ public class Tarea2lp {
                     }
                     
                 }
-            }ImprimirTablero(Tabla);
+            }//ImprimirTablero(Tabla);
             
             
         }
@@ -414,11 +420,23 @@ public class Tarea2lp {
                 }
                 ImprimirTablero(Tabla);
                 RellenarTablero(Tabla);
+                RellenarTablero(Tabla);
                 ImprimirTablero(Tabla);
             }
             if (cont>225)  break;
-                
-            System.out.println("puntaje actual; "+cont);
+            if (ciclo==0){
+                BloqueColor.R=0;
+                BloqueColor.B=0;
+                BloqueColor.O=0;
+                BloqueColor.Y=0;
+                BloqueColor.G=0;
+            }    
+            System.out.println("puntaje actual: "+cont);
+            System.out.println("Rojo: "+BloqueColor.R);
+            System.out.println("Azul: "+BloqueColor.B);
+            System.out.println("Naranjo: "+BloqueColor.O);
+            System.out.println("Amarillo: "+BloqueColor.Y);
+            System.out.println("Verde: "+BloqueColor.G);
             System.out.println("Por favor ingrese cordenada de inicio y la cordenaa de destino");
             System.out.print("Inicio (x)");
             int x1=leer.nextInt();
