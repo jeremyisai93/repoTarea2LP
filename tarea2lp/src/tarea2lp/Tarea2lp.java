@@ -299,6 +299,76 @@ public class Tarea2lp {
         }
     }
     
+    static void swapCelda(Bloque Tabla[][],int x1,int y1, int x2, int y2){
+            int cel1,cel2;
+            String color1,color2;
+            
+            
+            try{
+                ((BloqueColor) Tabla[x1][y1]).getBloqueColor();
+                cel1=0;
+            }
+            catch(Exception e){
+                ((BloqueComodin) Tabla[x1][y1]).getBloqueComodin();
+                cel1=1;
+            }
+            try{
+                ((BloqueColor) Tabla[x2][y2]).getBloqueColor();
+                cel2=0;
+            }
+            catch(Exception e){
+                ((BloqueComodin) Tabla[x2][y2]).getBloqueComodin();
+                cel2=1;
+            }
+            if (cel1==0 && cel2==0){
+                color1=((BloqueColor) Tabla[x1][y1]).getBloqueColor();
+                color2=((BloqueColor) Tabla[x2][y2]).getBloqueColor();
+                Tabla[x1][y1]= new ColorCreator().CrearBloque();
+                ((BloqueColor) Tabla[x1][y1]).setBloqueColor(color2);
+                Tabla[x2][y2]= new ColorCreator().CrearBloque();
+                ((BloqueColor) Tabla[x2][y2]).setBloqueColor(color1);                
+            }
+            else if (cel1==0 && cel2==1){
+                color1=((BloqueColor) Tabla[x1][y1]).getBloqueColor();
+                color2=((BloqueComodin) Tabla[x2][y2]).getBloqueComodin();
+                Tabla[x1][y1]= new ComodinCreator().CrearBloque();
+                ((BloqueComodin) Tabla[x1][y1]).setBloqueComodin(color2);
+                Tabla[x2][y2]= new ColorCreator().CrearBloque();
+                ((BloqueColor) Tabla[x2][y2]).setBloqueColor(color1);                
+            }
+            else if (cel1==1 && cel2==0){
+                color1=((BloqueComodin) Tabla[x1][y1]).getBloqueComodin();
+                color2=((BloqueColor) Tabla[x2][y2]).getBloqueColor();
+                Tabla[x1][y1]= new ColorCreator().CrearBloque();
+                ((BloqueColor) Tabla[x1][y1]).setBloqueColor(color2);
+                Tabla[x2][y2]= new ComodinCreator().CrearBloque();
+                ((BloqueComodin) Tabla[x2][y2]).setBloqueComodin(color1);                
+            }
+            else if (cel1==0 && cel2==0){
+                color1=((BloqueComodin) Tabla[x1][y1]).getBloqueComodin();
+                color2=((BloqueComodin) Tabla[x2][y2]).getBloqueComodin();
+                Tabla[x1][y1]= new ComodinCreator().CrearBloque();
+                ((BloqueComodin) Tabla[x1][y1]).setBloqueComodin(color2);
+                Tabla[x2][y2]= new ComodinCreator().CrearBloque();
+                ((BloqueComodin) Tabla[x2][y2]).setBloqueComodin(color1);                
+            }        
+    }
+    static int contarDestruidos(Bloque Tabla[][]){
+        String actual;
+        int cont=0;
+        for (int i = 0; i < 15; i++) {
+            for (int j=0;j<15;j++){
+                try{
+                    actual=((BloqueColor) Tabla[i][j]).getBloqueColor(); 
+                }
+                catch(Exception e){
+                    actual=((BloqueComodin) Tabla[i][j]).getBloqueComodin();
+                }
+                if (" ".equals(actual)) cont++;
+            }
+        }
+        return cont;
+    }
     
             
     public static void main(String[] args) {
@@ -332,24 +402,41 @@ public class Tarea2lp {
         }
         //ImprimirTablero(Tabla);
         
+        int cont=0,ciclo=0;
         
         while (true){
             ImprimirTablero(Tabla);
             while(DestruirCeldas(Tabla)){
+                if (ciclo!=0) cont+=contarDestruidos(Tabla);
+                if (cont>225){
+                    System.out.println("********GANO!!!!********* ");
+                    break;
+                }
                 ImprimirTablero(Tabla);
                 RellenarTablero(Tabla);
                 ImprimirTablero(Tabla);
-                //System.out.println("-------------------------------------------");
-                //leer.nextLine();
             }
-            
-            
-            /*System.out.println("Por favor ingrese cordenada de inicio y la cordenaa de destino");
+            if (cont>225)  break;
+                
+            System.out.println("puntaje actual; "+cont);
+            System.out.println("Por favor ingrese cordenada de inicio y la cordenaa de destino");
             System.out.print("Inicio (x)");
             int x1=leer.nextInt();
             System.out.print("Inicio (y)");
-            int y1=leer.nextInt();*/
-            break;
+            int y1=leer.nextInt();
+            System.out.print("Destino (x)");
+            int x2=leer.nextInt();
+            System.out.print("Destino (y)");
+            int y2=leer.nextInt();
+           
+            swapCelda(Tabla,x1-1,y1-1,x2-1,y2-1);
+            ImprimirTablero(Tabla);
+            
+            leer.nextLine();
+            leer.nextLine();
+            ciclo++;
+            
+            //break;
         }
     }
     
